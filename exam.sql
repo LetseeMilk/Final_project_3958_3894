@@ -5,9 +5,9 @@ CREATE TABLE e_membre (
     id_membre INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     date_de_naissance DATETIME DEFAULT CURRENT_TIMESTAMP,
-    genre VARCHAR (50) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    ville VARCHAR(50) NOT NULL,
+    genre VARCHAR (50) ,
+    email VARCHAR(100) UNIQUE,
+    ville VARCHAR(50) ,
     mdp VARCHAR(50) NOT NULL,
     id_image_profil VARCHAR(100) 
 );

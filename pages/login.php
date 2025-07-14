@@ -8,13 +8,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body class="bg-light">
-<header class="bg-primary text-white py-3 mb-4">
-        <div class="container">
-            <div class="d-flex justify-content-center">
-                <h1 class="m-0">JustOurSite</h1>
-            </div>
-        </div>
-    </header>
+
 
     <div class="container mt-5">
         <div class="row justify-content-center">
