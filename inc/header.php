@@ -19,7 +19,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="collapse navbar-collapse justify-content-center" id="menuPrincipal">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="../pages/liste_objets.php">
+                    <a class="nav-link" href="../pages/liste_obj.php">
                         <i class="bi bi-box-seam"></i> Objets
                     </a>
                 </li>
