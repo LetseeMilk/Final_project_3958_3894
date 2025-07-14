@@ -8,14 +8,14 @@ Version 1
 .images_objet(id_image, id_objet, nom_image)
 .emprunt(id_emprunt, id_objet, id_membre, date_emprunt, date_retour)
 
-__Insérer les données de test: 
+-->Insérer les données de test: 
 .4  membres
 .4 catégories ( esthétique, bricolage, mécanique , cuisine )
 .10 objets par membre à répartir sur les catégories
 .10 emprunts
 
 -->Page à créer: (ETU3958 OK)
-.Login et inscription
+.Login et inscription ETU003894
 .Liste des objets , (avec date de retour si emprunt en cours )
 .Filtre par catégorie 
 
@@ -36,3 +36,4 @@ case à cocher disponible
 Version 3 
 .ajouter un bouton emprunter dans liste objet ou on met lorqu on emprunte la durée de l'emprunt et si l objet est emprunter sa disponibilité devient
 emprunter (en rouge) au lieu de disponible (en vert) et on ne peut plus l emprunter (ETU3958 OK)
+.

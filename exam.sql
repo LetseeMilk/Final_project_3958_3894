@@ -40,6 +40,7 @@ CREATE TABLE e_emprunt (
     id_membre INT NOT NULL,
     date_emprunt DATE,
     date_retour DATE,
+    etat_retour VARCHAR(20),
     FOREIGN KEY (id_objet) REFERENCES e_objet(id_objet),
     FOREIGN KEY (id_membre) REFERENCES e_membre(id_membre)
 );

@@ -31,7 +31,7 @@ while ($row = mysqli_fetch_assoc($resultObjets)) {
     $objets[] = $row;
 }
 
-$queryEmprunts = "SELECT e.*, o.nom_objet, m.nom AS nom_proprietaire
+$queryEmprunts = "SELECT e.id_emprunt, e.date_emprunt, e.date_retour, e.etat_retour, o.nom_objet, m.nom AS nom_proprietaire
                   FROM e_emprunt e
                   JOIN e_objet o ON e.id_objet = o.id_objet
                   JOIN e_membre m ON o.id_membre = m.id_membre
@@ -128,38 +128,74 @@ while ($row = mysqli_fetch_assoc($resultEmprunts)) {
         </div>
 
         <div class="card shadow-sm">
-            <div class="card-header">
-                <h4>Mes emprunts (<?= count($emprunts) ?>)</h4>
-            </div>
-            <div class="card-body">
-                <?php if (count($emprunts) > 0): ?>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Objet</th>
-                                    <th>Propriétaire</th>
-                                    <th>Date emprunt</th>
-                                    <th>Date retour</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($emprunts as $emprunt): ?>
-                                    <tr>
-                                        <td><?= $emprunt['nom_objet'] ?></td>
-                                        <td><?= $emprunt['nom_proprietaire'] ?></td>
-                                        <td><?= date('d/m/Y', strtotime($emprunt['date_emprunt'])) ?></td>
-                                        <td><?= $emprunt['date_retour'] ? date('d/m/Y', strtotime($emprunt['date_retour'])) : 'En cours' ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                <?php else: ?>
-                    <p class="text-muted">Vous n'avez pas encore effectué d'emprunts.</p>
-                <?php endif; ?>
-            </div>
-        </div>
+    <div class="card-header">
+        <h4>Mes emprunts (<?= count($emprunts) ?>)</h4>
+    </div>
+    <div class="card-body">
+        <?php if (count($emprunts) > 0): ?>
+            <div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Objet</th>
+                <th>Propriétaire</th>
+                <th>Date emprunt</th>
+                <th>Date retour</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($emprunts as $emprunt): ?>
+                <tr>
+                    <td><?= $emprunt['nom_objet'] ?></td>
+                    <td><?= $emprunt['nom_proprietaire'] ?></td>
+                    <td><?= date('d/m/Y', strtotime($emprunt['date_emprunt'])) ?></td>
+                    <td>
+                        <?php if ($emprunt['date_retour']): ?>
+                            <?php if ($emprunt['etat_retour']): ?>
+                                <span class="badge bg-success">Retourné (<?= $emprunt['etat_retour'] ?>)</span>
+                            <?php else: ?>
+                                <span class="badge bg-secondary">Retour en attente</span>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <span class="badge bg-warning">En cours</span>
+                        <?php endif; ?>
+                    </td>
+
+                <td>
+                    <?php if (!$emprunt['date_retour']): ?>
+                        <form method="post" action="traiter_retour.php" class="row g-2">
+                            <input type="hidden" name="id_emprunt" value="<?= $emprunt['id_emprunt'] ?>">
+                            <div class="col-auto">
+                                <select name="etat_retour" class="form-select form-select-sm" required>
+                                    <option value="">État</option>
+                                    <option value="bon">OK</option>
+                                    <option value="abime">Abîmé</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-sm btn-primary">Valider retour</button>
+                            </div>
+                        </form>
+                    <?php else: ?>
+                        <?php if ($emprunt['etat_retour']): ?>
+                            <span class="badge bg-success">Retourné (<?= htmlspecialchars($emprunt['etat_retour']) ?>)</span>
+                        <?php else: ?>
+                            <span class="badge bg-secondary">Retour en attente</span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </td>
+
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+        <?php else: ?>
+            <p class="text-muted">Vous n'avez pas encore effectué d'emprunts.</p>
+        <?php endif; ?>
+    </div>
+</div>
     </div>
 </div>
 

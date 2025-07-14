@@ -8,7 +8,6 @@ $nom = $_POST['nom'];
 
 $genre = $_POST['genre'];
 $ville = $_POST['ville'];
-
 $image_profil = null;
 
 
