@@ -23,7 +23,11 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="bi bi-box-seam"></i> Objets
                     </a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link" href="../pages/ajout_obj.php">
+                        <i class="bi bi-plus-circle"></i> Ajouter Objet
+                    </a>
+                </li>
             </ul>
         </div>
 

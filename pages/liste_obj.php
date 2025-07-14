@@ -12,9 +12,8 @@ if ($id_categorie !== '') {
 }
 
 $sql = "
-    SELECT e_objet.id_objet, e_objet.nom_objet, e_categorie_objet.nom_categorie, 
-           e_membre.nom AS proprietaire, e_emprunt.date_retour, 
-           e_images_objet.nom_image
+    SELECT e_objet.id_objet, e_objet.nom_objet, e_categorie_objet.nom_categorie, e_membre.nom AS proprietaire,
+           e_emprunt.date_retour, e_images_objet.nom_image
     FROM e_objet
     JOIN e_categorie_objet ON e_objet.id_categorie = e_categorie_objet.id_categorie
     JOIN e_membre ON e_objet.id_membre = e_membre.id_membre
@@ -28,7 +27,6 @@ $sql = "
     $condition
     ORDER BY e_objet.nom_objet ASC
 ";
-
 
 
 $result = mysqli_query($dataBase, $sql);
@@ -70,27 +68,29 @@ $categories = mysqli_query($dataBase, "SELECT * FROM e_categorie_objet");
     </div>
 </form>
 
-    <div class="row">
-    <?php while ($obj = mysqli_fetch_assoc($result)) { ?>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <?php if ($obj['nom_image']) { ?>
-                    <img src="../uploads/<?= $obj['nom_image'] ?>" class="card-img-top" alt="Image de l'objet">
-                <?php } else { ?>
-                    <img src="../assets/images/img.jpg" class="card-img-top" alt="Pas d'image">
-                <?php } ?>
+   <div class="row">
+<?php while ($obj = mysqli_fetch_assoc($result)): ?>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <a href="fiche_obj.php?id=<?= $obj['id_objet'] ?>" class="text-decoration-none text-dark">
+                <?php if ($obj['nom_image']): ?>
+                    <img src="../assets/uploads/<?= htmlspecialchars($obj['nom_image']) ?>" class="card-img-top" alt="Image de <?= htmlspecialchars($obj['nom_objet']) ?>">
+                <?php else: ?>
+                    <img src="../assets/images/img.jpg" class="card-img-top" alt="Image par défaut">
+                <?php endif; ?>
                 <div class="card-body">
-                    <h5 class="card-title"><?= ($obj['nom_objet']) ?></h5>
+                    <h5 class="card-title"><?= htmlspecialchars($obj['nom_objet']) ?></h5>
                     <p class="card-text">
-                        <strong>Catégorie :</strong> <?= $obj['nom_categorie'] ?><br>
-                        <strong>Propriétaire :</strong> <?= $obj['proprietaire'] ?><br>
+                        <strong>Catégorie :</strong> <?= htmlspecialchars($obj['nom_categorie']) ?><br>
+                        <strong>Propriétaire :</strong> <?= htmlspecialchars($obj['proprietaire']) ?><br>
                         <strong>Disponibilité :</strong>
-                        <?= $obj['date_retour'] ? 'Emprunté jusqu’au ' . $obj['date_retour'] : '<span class="text-success">Disponible</span>' ?>
+                        <?= $obj['date_retour'] ? 'Emprunté jusqu’au ' . htmlspecialchars($obj['date_retour']) : '<span class="text-success">Disponible</span>' ?>
                     </p>
                 </div>
-            </div>
+            </a>
         </div>
-    <?php } ?>
+    </div>
+<?php endwhile; ?>
 </div>
 
 </div>
