@@ -18,9 +18,10 @@ if (!empty($nom_objet)) {
 
 if ($disponible) {
     $conditions[] = "e_objet.id_objet NOT IN (
-        SELECT id_objet FROM e_emprunt WHERE date_retour IS NULL
+        SELECT id_objet FROM e_emprunt WHERE date_retour > CURDATE()
     )";
 }
+
 
 $condition = '';
 if (!empty($conditions)) {
@@ -34,7 +35,7 @@ $sql = "
     JOIN e_categorie_objet ON e_objet.id_categorie = e_categorie_objet.id_categorie
     JOIN e_membre ON e_objet.id_membre = e_membre.id_membre
     LEFT JOIN (
-        SELECT * FROM e_emprunt WHERE date_retour IS NULL
+    SELECT * FROM e_emprunt WHERE date_retour > CURDATE()
     ) AS e_emprunt ON e_emprunt.id_objet = e_objet.id_objet
     LEFT JOIN (
         SELECT id_objet, MIN(id_image) AS min_id FROM e_images_objet GROUP BY id_objet
@@ -102,23 +103,50 @@ $categories = mysqli_query($dataBase, "SELECT * FROM e_categorie_objet");
 <?php while ($obj = mysqli_fetch_assoc($result)): ?>
     <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm">
+    <div class="card-img-top-wrapper">
+        <a href="fiche_obj.php?id=<?= $obj['id_objet'] ?>">
+            <?php if ($obj['nom_image']): ?>
+                <img src="../assets/uploads/<?= $obj['nom_image'] ?>" class="card-img-top" alt="Image de <?= $obj['nom_objet'] ?>">
+            <?php else: ?>
+                <img src="../assets/images/img.jpg" class="card-img-top" alt="Image par défaut">
+            <?php endif; ?>
+        </a>
+    </div>
+    <div class="card-body d-flex flex-column">
+        <h5 class="card-title">
             <a href="fiche_obj.php?id=<?= $obj['id_objet'] ?>" class="text-decoration-none text-dark">
-                <?php if ($obj['nom_image']): ?>
-                    <img src="../assets/uploads/<?= $obj['nom_image'] ?>" class="card-img-top" alt="Image de <?= $obj['nom_objet'] ?>">
-                <?php else: ?>
-                    <img src="../assets/images/img.jpg" class="card-img-top" alt="Image par défaut">
-                <?php endif; ?>
-                <div class="card-body">
-                    <h5 class="card-title"><?= $obj['nom_objet'] ?></h5>
-                    <p class="card-text">
-                        <strong>Catégorie :</strong> <?= $obj['nom_categorie'] ?><br>
-                        <strong>Propriétaire :</strong> <?= $obj['proprietaire'] ?><br>
-                        <strong>Disponibilité :</strong>
-                        <?= $obj['date_retour'] ? 'Emprunté jusqu’au ' . $obj['date_retour'] : '<span class="text-success">Disponible</span>' ?>
-                    </p>
-                </div>
+                <?= $obj['nom_objet'] ?>
             </a>
-        </div>
+        </h5>
+        <p class="card-text mb-3">
+            <strong>Catégorie :</strong> <?= $obj['nom_categorie'] ?><br>
+            <strong>Propriétaire :</strong> <?= $obj['proprietaire'] ?><br>
+            <strong>Disponibilité :</strong>
+            <?= $obj['date_retour'] ? '<span class="text-danger">Emprunté</span>' : '<span class="text-success">Disponible</span>' ?>
+        </p>
+
+        <?php if (!$obj['date_retour']): ?>
+            <form action="emprunter_obj.php" method="post" class="mt-auto">
+                <input type="hidden" name="id_objet" value="<?= $obj['id_objet'] ?>">
+
+                <div class="mb-2">
+                    <label for="date_<?= $obj['id_objet'] ?>" class="form-label">Date d'emprunt</label>
+                    <input type="date" name="date_emprunt" class="form-control" id="date_<?= $obj['id_objet'] ?>" required>
+                </div>
+
+                <div class="mb-2">
+                    <label for="duree_<?= $obj['id_objet'] ?>" class="form-label">Durée (en jours)</label>
+                    <input type="number" name="duree" class="form-control" id="duree_<?= $obj['id_objet'] ?>" min="1" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-box-arrow-down"></i> Emprunter
+                </button>
+            </form>
+        <?php endif; ?>
+    </div>
+</div>
+
     </div>
 <?php endwhile; ?>
 </div>

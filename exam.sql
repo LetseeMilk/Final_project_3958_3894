@@ -38,8 +38,8 @@ CREATE TABLE e_emprunt (
     id_emprunt INT AUTO_INCREMENT PRIMARY KEY,
     id_objet INT NOT NULL,
     id_membre INT NOT NULL,
-    date_emprunt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    date_retour DATETIME,
+    date_emprunt DATE,
+    date_retour DATE,
     FOREIGN KEY (id_objet) REFERENCES e_objet(id_objet),
     FOREIGN KEY (id_membre) REFERENCES e_membre(id_membre)
 );

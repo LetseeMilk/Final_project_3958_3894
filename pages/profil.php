@@ -148,8 +148,8 @@ while ($row = mysqli_fetch_assoc($resultEmprunts)) {
                                     <tr>
                                         <td><?= $emprunt['nom_objet'] ?></td>
                                         <td><?= $emprunt['nom_proprietaire'] ?></td>
-                                        <td><?= date('d/m/Y H:i', strtotime($emprunt['date_emprunt'])) ?></td>
-                                        <td><?= $emprunt['date_retour'] ? date('d/m/Y H:i', strtotime($emprunt['date_retour'])) : 'En cours' ?></td>
+                                        <td><?= date('d/m/Y', strtotime($emprunt['date_emprunt'])) ?></td>
+                                        <td><?= $emprunt['date_retour'] ? date('d/m/Y', strtotime($emprunt['date_retour'])) : 'En cours' ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
