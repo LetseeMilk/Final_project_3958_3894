@@ -23,11 +23,6 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="bi bi-box-seam"></i> Objets
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../pages/profil.php">
-                        <i class="bi bi-person-circle"></i> Profil
-                    </a>
-                </li>
                 
             </ul>
         </div>
