@@ -32,6 +32,20 @@
                         <label for="nom" class="form-label">Nom</label>
                         <input type="text" name="nom" class="form-control" required>
                     </div>
+                    <div class="mb-3">
+                    <label for="genre" class="form-label">Genre</label>
+                    <select name="genre" class="form-control" required>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ville" class="form-label">Ville</label>
+                        <input type="text" name="ville" class="form-control" required>
+                    </div>
+
 
                     <div class="d-grid">
                         <input type="submit" value="Valider" class="btn btn-primary">
