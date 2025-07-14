@@ -21,8 +21,8 @@
                                 <input type="email" class="form-control" name="email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Mot de passe</label>
-                                <input type="password" class="form-control" name="password" required>
+                                <label for="mdp" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" name="mdp" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Valider</button>
                         </form>

@@ -27,7 +27,7 @@ if (session_status() === PHP_SESSION_NONE) {
             </ul>
         </div>
 
-        <form action="/logout.php" method="post" class="d-flex ms-auto">
+        <form action="../pages/logout.php" method="post" class="d-flex ms-auto">
             <button type="submit" class="btn-deconnexion">
                 <i class="bi bi-box-arrow-right"></i> Déconnexion
             </button>

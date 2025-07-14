@@ -3,7 +3,7 @@ require("../inc/connexion.php");
 
 function checkLogin($dataBase) {
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = $_POST['mdp'];
 
     $sql = sprintf("SELECT * FROM e_membre WHERE email='%s' AND mdp='%s'", $email, $password);
 
