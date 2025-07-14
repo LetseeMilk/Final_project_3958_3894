@@ -13,7 +13,7 @@ function checkLogin($dataBase) {
         session_start();
         $_SESSION['id_membre'] = $row['id_membre']; 
         $_SESSION['nom'] = $row['nom'];
-        header("Location: home.php");
+        header("Location: ../pages/liste_obj.php");
         exit();
     } else {
         header("Location: login.php?error=1");
@@ -21,6 +21,5 @@ function checkLogin($dataBase) {
     }
 }
 
-// Appel de la fonction
 checkLogin($dataBase);
 ?>

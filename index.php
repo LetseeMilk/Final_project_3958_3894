@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
- <?php include 'inc/header.php'?>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">

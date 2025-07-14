@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
@@ -16,7 +15,7 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Connexion</h2>
-                        <form action="traitementlogin.php" method="post">
+                        <form action="../inc/traitementlogin.php" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email" required>
