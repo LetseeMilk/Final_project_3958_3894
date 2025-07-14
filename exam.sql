@@ -1,5 +1,5 @@
-CREATE DATABASE exam;
-USE exam;
+
+USE db_s2_ETU003958;
 
 CREATE TABLE e_membre (
     id_membre INT AUTO_INCREMENT PRIMARY KEY,
