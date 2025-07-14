@@ -7,10 +7,11 @@
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form action="pages/request.php" method="post" class="border p-4 rounded shadow-sm bg-light">
+                <h2 class="card-title text-center mb-4">Inscription</h2>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="email" class="form-control" required>

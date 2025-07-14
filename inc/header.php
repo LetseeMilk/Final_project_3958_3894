@@ -27,7 +27,14 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a class="nav-link" href="../pages/ajout_obj.php">
                         <i class="bi bi-plus-circle"></i> Ajouter Objet
                     </a>
+
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../pages/profil.php">
+                        <i class="bi bi-person"></i> Profil
+                    </a>
+                </li>
+
             </ul>
         </div>
 

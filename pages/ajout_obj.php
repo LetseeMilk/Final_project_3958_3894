@@ -31,7 +31,7 @@ $categories = mysqli_query($dataBase, "SELECT * FROM e_categorie_objet ORDER BY 
             <select class="form-select" id="categorie" name="categorie" required>
                 <option value="">-- Choisir une catégorie --</option>
                 <?php while ($cat = mysqli_fetch_assoc($categories)): ?>
-                    <option value="<?= $cat['id_categorie'] ?>"><?= htmlspecialchars($cat['nom_categorie']) ?></option>
+                    <option value="<?= $cat['id_categorie'] ?>"><?= $cat['nom_categorie'] ?></option>
                 <?php endwhile; ?>
             </select>
         </div>

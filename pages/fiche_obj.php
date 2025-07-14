@@ -37,16 +37,16 @@ $res_emprunts = mysqli_query($dataBase, $sql_emprunts);
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <title>Fiche objet - <?= htmlspecialchars($obj['nom_objet']) ?></title>
+    <title>Fiche objet - <?= $obj['nom_objet'] ?></title>
     <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
 <?php include '../inc/header.php'; ?>
 
 <div class="container mt-4">
-    <h1><?= htmlspecialchars($obj['nom_objet']) ?></h1>
-    <p><strong>Catégorie :</strong> <?= htmlspecialchars($obj['nom_categorie']) ?></p>
-    <p><strong>Propriétaire :</strong> <?= htmlspecialchars($obj['proprietaire']) ?></p>
+    <h1><?= $obj['nom_objet'] ?></h1>
+    <p><strong>Catégorie :</strong> <?= $obj['nom_categorie'] ?></p>
+    <p><strong>Propriétaire :</strong> <?= $obj['proprietaire'] ?></p>
 
     <div class="row mb-4">
         <?php 
@@ -55,7 +55,7 @@ $res_emprunts = mysqli_query($dataBase, $sql_emprunts);
             $hasImages = true;
             ?>
             <div class="col-md-4 mb-3">
-                <img src="../assets/uploads/<?= htmlspecialchars($img['nom_image']) ?>"  class="img-fluid rounded shadow-sm" />
+                <img src="../assets/uploads/<?= $img['nom_image'] ?>"  class="img-fluid rounded shadow-sm" />
             </div>
         <?php } 
         if (!$hasImages) { ?>
@@ -80,9 +80,9 @@ $res_emprunts = mysqli_query($dataBase, $sql_emprunts);
             <tbody>
                 <?php while ($emprunt = mysqli_fetch_assoc($res_emprunts)): ?>
                     <tr>
-                        <td><?= htmlspecialchars($emprunt['emprunteur']) ?></td>
-                        <td><?= htmlspecialchars($emprunt['date_emprunt']) ?></td>
-                        <td><?= $emprunt['date_retour'] ? htmlspecialchars($emprunt['date_retour']) : '<em>Non retourné</em>' ?></td>
+                        <td><?= $emprunt['emprunteur'] ?></td>
+                        <td><?= $emprunt['date_emprunt'] ?></td>
+                        <td><?= $emprunt['date_retour'] ? $emprunt['date_retour'] : '<em>Non retourné</em>' ?></td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
